@@ -12,7 +12,14 @@ class LinkedList:
 	def __init__(self):
 		self.head = None
 
-	def insert(self, newNode):
+	def insertHead(self, newNode):
+		# data => Matthew, next => None
+		temporaryNode = self.head # John	
+		self.head = newNode
+		self.head.next = temporaryNode
+		del temporaryNode
+
+	def insertEnd(self, newNode):
 		# head => John->None
 		if self.head == None:
 			self.head = newNode
@@ -49,10 +56,10 @@ class LinkedList:
 linkedList = LinkedList()
 linkedList.printList()
 firstNode = Node("John")
-linkedList.insert(firstNode)
+linkedList.insertEnd(firstNode)
 secondNode = Node("Ben")
-linkedList.insert(secondNode)
+linkedList.insertEnd(secondNode)
 thirdNode = Node("Matthew")
-linkedList.insert(thirdNode)
+linkedList.insertHead(thirdNode)
 linkedList.printList()
 
