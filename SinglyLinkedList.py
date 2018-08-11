@@ -37,6 +37,33 @@ class LinkedList:
 				
 			lastNode.next = newNode
 
+	def listLength(self):
+		currentNode = self.head
+		length = 0
+		while currentNode != None:
+			length += 1
+			currentNode = currentNode.next
+		return length
+
+	def insertAt(self, newNode, position):
+		if position < 0 or position > self.listLength():
+			print "Invalid position"
+			return		
+		if position == 0:
+			self.insertHead(newNode)
+			return
+		#Traverse the list
+		currentNode = self.head
+		currentPosition = 0
+		while True:
+			if  currentPosition == position:
+				previousNode.next = newNode
+				newNode.next = currentNode
+				break
+			previousNode = currentNode
+			currentNode = currentNode.next
+			currentPosition += 1
+
 	def printList(self):
 		# head => John->Ben->Matthew->None
 		if self.head == None:
@@ -59,7 +86,9 @@ firstNode = Node("John")
 linkedList.insertEnd(firstNode)
 secondNode = Node("Ben")
 linkedList.insertEnd(secondNode)
-thirdNode = Node("Matthew")
-linkedList.insertHead(thirdNode)
+thirdNode = Node(10)
+linkedList.insertAt(thirdNode, 10)
+#fourthNode = Node("Matthew")
+#linkedList.insertHead(fourthNode)
 linkedList.printList()
 
