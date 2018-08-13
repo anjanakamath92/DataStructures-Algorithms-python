@@ -78,6 +78,39 @@ class LinkedList:
 				print currentNode.data
 				currentNode = currentNode.next
 
+	def deleteEnd(self):
+		#Traverse the list and delete the last node
+		lastNode = self.head
+		while lastNode.next != None:
+			previousNode = lastNode
+			lastNode = lastNode.next
+		previousNode.next = None
+		
+	def deleteAt(self, position):
+		if position < 0 or position >= self.listLength():
+			print "Invalid position"
+			return
+		if self.isListEmpty() == False:
+			if position == 0:
+				self.deleteHead()
+				return
+			delNode = self.head
+			currentPosition = 0
+			while True:
+				if currentPosition == position:
+					previousNode.next = delNode.next
+					delNode.next = None
+					break
+				previousNode = delNode
+				delNode = delNode.next
+				currentPosition += 1
+
+	def isListEmpty(self):
+		if self.head == None:
+			return True
+		else:
+			return False
+
 # Node => data, next
 # firstNode.data => John , firstNode.next => None
 linkedList = LinkedList()
@@ -88,7 +121,11 @@ secondNode = Node("Ben")
 linkedList.insertEnd(secondNode)
 thirdNode = Node(10)
 linkedList.insertAt(thirdNode, 10)
-#fourthNode = Node("Matthew")
-#linkedList.insertHead(fourthNode)
+deleteNode = Node("Aish")
+linkedList.insertEnd(deleteNode)
+fourthNode = Node("Matthew")
+linkedList.insertHead(fourthNode)
+#linkedList.deleteEnd()
+linkedList.deleteAt(3)
 linkedList.printList()
 
